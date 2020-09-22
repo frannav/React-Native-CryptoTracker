@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, FlatList, ActivityIndicator, Text, StyleSheet } from 'react-native';
 import Http from 'cryptoTracker/src/libs/http';
 import CoinsItem from './CoinsItem';
+import Colors from 'cryptoTracker/src/res/colors';
 
 class CoinsScreen extends Component {
 
@@ -18,8 +19,8 @@ class CoinsScreen extends Component {
     this.setState({ coins: res.data, loading: false });
   }
 
-  handlePress = () => {    
-    this.props.navigation.navigate('CoinDetail');
+  handlePress = (coin) => {    
+    this.props.navigation.navigate('CoinDetail', { coin });
   }
 
   render() {
@@ -39,7 +40,10 @@ class CoinsScreen extends Component {
         <FlatList
           data={coins}
           renderItem={({ item }) => 
-          <CoinsItem item={item}/>            
+          <CoinsItem
+            item={item}
+            onPress={() => this.handlePress(item)}
+          />            
           }
         />
       </View>
@@ -50,7 +54,7 @@ class CoinsScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: Colors.charade
   },
   titleText: {
     color: "#fff",
