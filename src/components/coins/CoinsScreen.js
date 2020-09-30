@@ -31,7 +31,7 @@ class CoinsScreen extends Component {
     this.props.navigation.navigate('CoinDetail', { coin });
   }
 
-  handleSarch = (query) => {
+  handleSearch = (query) => {
     const { allCoins } = this.state;
 
     const coinsFiltered = allCoins.filter((coin) => {
@@ -48,7 +48,7 @@ class CoinsScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <CoinsSearch  onChange={this.handleSarch} />
+        <CoinsSearch  onChange={this.handleSearch} />
         { loading ? 
           <ActivityIndicator
             style={styles.loader}
